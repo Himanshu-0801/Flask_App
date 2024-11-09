@@ -1,0 +1,15 @@
+to run the flask app use :  flask run
+
+to run flask on a desired port use the command : flask run --port=8080(any port number)
+
+to run the app by running code add 
+
+
+if __name__ =='__main__':
+    app.run(port= 9999)
+
+
+By adding if __name__ == '__main__':, you ensure that certain code (like starting a web server) 
+only runs when the script is executed directly, 
+not when it is imported as a module in another script
+    
