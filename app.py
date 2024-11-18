@@ -24,8 +24,17 @@ ideas = {
 @app.get("/ideaapp/api/v1/ideas")
 
 def get_all_ideas():
-    #logic to fetch all the ideas
- return ideas
+    idea_author = request.args.get('idea_author')
+
+    if idea_author:
+        idea_res ={}
+        for key, value in ideas.items():
+           if value["idea_author"]== idea_author:  
+            idea_res[key]=value
+        return idea_res    
+    #logic to fetch all the ideas and support query params
+
+    return ideas
 
 
 '''
@@ -56,7 +65,20 @@ def create_idea():
     except:
         return "Some internal server error",500    
 
-     
+# end point to fetch idea based on the idea id
+# 
+
+@app.get("/ideaapp/api/v1/ideas/<int:idea_id>")  #idea_id is the path param 
+def get_idea_id(idea_id):
+    try:
+        if int(idea_id) in ideas:
+            return ideas[int(idea_id)],200
+        else :
+            return "idea_id passed is not present",404    
+
+    except:
+        return"some internal error ocurred",500   
+
 
 
 
