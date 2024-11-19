@@ -80,6 +80,24 @@ def get_idea_id(idea_id):
         return"some internal error ocurred",500   
 
 
+'''
+Endpoint for updating an idea 
+
+'''
+@app.put("/ideaapp/api/v1/ideas/<int:idea_id>")
+def update_idea(idea_id):
+    try:
+        if int(idea_id) in ideas:
+            ideas[int(idea_id )]= request.get_json()
+
+            return ideas[int(idea_id)],200
+        else :
+            return "idea_id passed is not present",404    
+
+    except:
+        return"some internal error ocurred",500   
+ 
+
 
 
 if __name__ =='__main__':
