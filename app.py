@@ -97,6 +97,20 @@ def update_idea(idea_id):
     except:
         return"some internal error ocurred",500   
  
+'''
+Endpoint to delete an idea 
+'''
+@app.delete("/ideaapp/api/v1/ideas/<int:idea_id>")
+def delete_idea(idea_id):
+    try:
+        if int(idea_id) in ideas:
+           ideas.pop(int(idea_id))
+           return "idea got successfully deleted "
+        else :
+            return "idea_id passed is not present",404    
+
+    except:
+        return"some internal error ocurred",500   
 
 
 
